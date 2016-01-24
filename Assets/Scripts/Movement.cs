@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour
 	void Update ()
     {
         // Movement
-        float currentSpeed = Interpolate.Ease(Interpolate.EaseType.EaseOutQuad)(0f, currentMaxSpeed, endTimer, currentTimeToEnd);
+        float currentSpeed = Interpolate.Ease(Interpolate.EaseType.EaseOutQuad)(minSpeed, currentMaxSpeed, endTimer, currentTimeToEnd);
         transform.Translate(new Vector3(0f, 0f, currentSpeed) * Time.deltaTime);
         endTimer += Time.deltaTime;
 
