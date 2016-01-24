@@ -24,7 +24,7 @@ public class Generator : MonoBehaviour
 	
 	void Update ()
     {
-	    if (corridorGenerationTimer >= corridorGenerationTime)
+	    if (corridorGenerationTimer >= corridorGenerationTime && corridors.childCount < 100)
         {
             spawnRandomCorridor();
             corridorGenerationTimer = 0f;
