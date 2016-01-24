@@ -213,7 +213,7 @@ MonoBehaviour:
   minSpeed: 20
   maxSpeed: 50
   minTimeToEnd: 10
-  maxTimeToEnd: 60
+  maxTimeToEnd: 30
 --- !u!1 &1503515587
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +255,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   corridor: {fileID: 457906, guid: e0d0759a6bea8ba4fba31e81f675377a, type: 2}
   corridorGenerationTime: 0.1
-  maxScale: 12
+  minScale: 4
+  maxScale: 16
 --- !u!1 &1823680627
 GameObject:
   m_ObjectHideFlags: 0
