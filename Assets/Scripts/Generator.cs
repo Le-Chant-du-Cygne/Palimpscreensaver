@@ -5,6 +5,7 @@ public class Generator : MonoBehaviour
 {
     public Transform corridor;
     public float corridorGenerationTime;
+    public int minScale;
     public int maxScale;
 
     private Transform corridors;
@@ -36,7 +37,7 @@ public class Generator : MonoBehaviour
     {
         Transform newCorridor = Instantiate(corridor, Vector3.zero, Quaternion.identity) as Transform;
         newCorridor.parent = corridors;
-        Vector3 scale = new Vector3(1f, 1f, Random.Range(1, maxScale + 1));
+        Vector3 scale = new Vector3(1f, 1f, Random.Range(minScale, maxScale + 1));
         newCorridor.localScale = scale;
         newCorridor.position = currentPosition;
         currentPosition = new Vector3(0f, 0f, currentPosition.z);
