@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
 
     private Vector3 lastPosition;
     private float currentSpeed;
+    private float currentMinSpeed;
     private float currentMaxSpeed;
     private float currentTimeToEnd;
     private float endTimer;
@@ -25,36 +26,38 @@ public class Movement : MonoBehaviour
 
         lastPosition = Vector3.zero;
         currentSpeed = 0f;
+        currentMinSpeed = minSpeed;
         currentMaxSpeed = Random.Range(minSpeed, maxSpeed);
         currentTimeToEnd = Random.Range(minTimeToEnd, maxTimeToEnd);
         endTimer = 0f;
         accelerating = true;
     }
-	
+
 	void Update ()
     {
         // Movement
-        float currentSpeed = 0f;
         if (accelerating)
         {
-            currentSpeed = Interpolate.Ease(Interpolate.EaseType.EaseInQuad)(minSpeed, currentMaxSpeed, endTimer, currentTimeToEnd);
+            currentSpeed = Interpolate.Ease(Interpolate.EaseType.EaseInQuad)(currentMinSpeed, currentMaxSpeed, endTimer, currentTimeToEnd / 2);
         }
         else
         {
-            currentSpeed = Interpolate.Ease(Interpolate.EaseType.EaseInQuad)(currentMaxSpeed, minSpeed, endTimer, currentTimeToEnd);
+            currentSpeed = Interpolate.Ease(Interpolate.EaseType.EaseInQuad)(currentMaxSpeed, -(currentMaxSpeed - minSpeed), endTimer, currentTimeToEnd / 2);
         }
         transform.Translate(new Vector3(0f, 0f, currentSpeed) * Time.deltaTime);
         endTimer += Time.deltaTime;
 
         // Reset parameters
-        if (endTimer >= currentTimeToEnd)
+        if (endTimer >= currentTimeToEnd / 2)
         {
             if (accelerating)
             {
                 accelerating = false;
+                currentMaxSpeed = currentSpeed;
             }
             else
             {
+                currentMinSpeed = currentSpeed;
                 currentMaxSpeed = Random.Range(minSpeed, maxSpeed);
                 currentTimeToEnd = Random.Range(minTimeToEnd, maxTimeToEnd);
                 accelerating = true;
