@@ -212,8 +212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpeed: 20
   maxSpeed: 50
-  minTimeToEnd: 10
-  maxTimeToEnd: 30
+  minTimeToEnd: 15
+  maxTimeToEnd: 60
 --- !u!1 &1503515587
 GameObject:
   m_ObjectHideFlags: 0
